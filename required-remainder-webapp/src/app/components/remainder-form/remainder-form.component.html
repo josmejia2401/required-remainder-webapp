@@ -1,0 +1,44 @@
+<div class="remainder-container">
+    <div *ngIf="cargando" class="loading-overlay">
+        <div class="spinner"></div>
+        <div class="loading-msg">Cargando...</div>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="remainder-form" novalidate>
+        <h2>Calculadora de Required Remainder</h2>
+        <div class="form-row">
+            <label for="x">x</label>
+            <input type="number" id="x" formControlName="x" placeholder="Ingrese x">
+            <div *ngIf="form.get('x')?.touched && form.get('x')?.invalid" class="field-error">
+                <span *ngIf="form.get('x')?.errors?.['required']">x es requerido.</span>
+                <span *ngIf="form.get('x')?.errors?.['min']">x debe ser mayor o igual a 2.</span>
+            </div>
+        </div>
+        <div class="form-row">
+            <label for="y">y</label>
+            <input type="number" id="y" formControlName="y" placeholder="Ingrese y">
+            <div *ngIf="form.get('y')?.touched && form.get('y')?.invalid" class="field-error">
+                <span *ngIf="form.get('y')?.errors?.['required']">y es requerido.</span>
+                <span *ngIf="form.get('y')?.errors?.['min']">y no puede ser negativo.</span>
+            </div>
+        </div>
+        <div class="form-row">
+            <label for="n">n</label>
+            <input type="number" id="n" formControlName="n" placeholder="Ingrese n">
+            <div *ngIf="form.get('n')?.touched && form.get('n')?.invalid" class="field-error">
+                <span *ngIf="form.get('n')?.errors?.['required']">n es requerido.</span>
+                <span *ngIf="form.get('n')?.errors?.['min']">n no puede ser negativo.</span>
+            </div>
+        </div>
+        <button type="submit" [disabled]="form.invalid">Calcular</button>
+    </form>
+
+    <div *ngIf="resultado" class="result-box">
+        <h3>Resultado</h3>
+        <pre>{{ resultado | json }}</pre>
+    </div>
+
+    <div *ngIf="error" class="error-msg">
+        {{ error }}
+    </div>
+</div>
