@@ -7,7 +7,7 @@ import { RemainderRequest } from '../models/remainder.model';
     providedIn: 'root'
 })
 export class RemainderService {
-    private apiUrl = 'http://localhost:8080/api/required-remainder/batch';
+    private apiUrl = 'http://52.207.241.220:8080/api/required-remainder/batch';
 
     constructor(private http: HttpClient) { }
 
